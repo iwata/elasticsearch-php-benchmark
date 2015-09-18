@@ -1,5 +1,24 @@
-- name: Install Java, required for elasticsearch
-  apt: name=default-jre state=present update_cache=yes
+# Configure timezone
+- name: Configuring timezone
+  shell: echo {{ elasticsearch_timezone }} > /etc/timezone; dpkg-reconfigure --frontend noninteractive tzdata
+
+# Update repos
+- name: Install python-software-properties
+  apt: pkg=python-software-properties state=present update_cache=yes
+- name: Update repositories
+  apt_repository: repo={{ item }} state=present update_cache=yes
+  with_items: elasticsearch_apt_repos
+
+# Accept Oracle license
+- name: Accept Oracle license prior JDK installation
+  shell: echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections; echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections creates=/usr/lib/jvm/java-7-oracle
+
+# Install Java
+- name: Install dependencies
+  apt: pkg={{elasticsearch_apt_java_package}} state=present
+
+#- name: Install Java, required for elasticsearch
+  #apt: name=default-jre state=present update_cache=yes
 
 - name: Get the version of PHP avaiable in the server
   command: /opt/elasticsearch/bin/elasticsearch -v
@@ -8,7 +27,7 @@
 
 - name: Download the elasticsearch package
   get_url:
-    url=https://download.elasticsearch.org/elasticsearch/elasticsearch/{{ elasticsearch_tarball }}
+    url=https://download.elastic.co/elasticsearch/elasticsearch/{{ elasticsearch_tarball }}
     dest=/tmp/{{ elasticsearch_tarball }}
     sha256sum={{ elasticsearch_tarball_sha256sum }}
   when: (system_elasticsearch_version | failed) or (system_elasticsearch_version.stdout.find('{{ elasticsearch_version }}') == -1)
@@ -36,10 +55,10 @@
     tar -xzf elasticsearch_service_wrapper.tar.gz && mv elasticsearch-servicewrapper-master/service /opt/elasticsearch/bin
     creates=/opt/elasticsearch/bin/service/elasticsearch
 
-- name: Update the elasticsearch service wrapper configuration file
-  template:
-    src=elasticsearch.conf.j2
-    dest=/opt/elasticsearch/bin/service/elasticsearch.conf
+#- name: Update the elasticsearch service wrapper configuration file
+  #template:
+    #src=elasticsearch.conf.j2
+    #dest=/opt/elasticsearch/bin/service/elasticsearch.conf
 
 - name: Install the elasticsearch service wrapper
   command:

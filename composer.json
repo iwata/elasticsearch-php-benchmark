@@ -2,19 +2,19 @@
     "name": "jolicode/elasticsearch-clients-benchmark",
     "description": "Demo and benchmark of all the PHP ElasticSearch Clients",
     "require": {
-        "php": ">=5.5.0",
-        "ruflin/elastica": "v0.90.5.0",
+        "php": ">=5.6.0",
+        "ruflin/elastica": "2.3.*",
         "symfony/console": "2.3.*@dev",
         "symfony/stopwatch": "2.3.*@dev",
-        "sherlock/sherlock": "dev-master",
-        "elasticsearch/elasticsearch": "dev-master",
-        "nervetattoo/elasticsearch": "v2.3.0"
+        "sherlock/sherlock": "v0.1.16",
+        "elasticsearch/elasticsearch": "v2.0.0",
+        "nervetattoo/elasticsearch": "v2.4.1"
     },
     "minimum-stability": "dev",
     "authors": [
         {
-            "name": "Damien Alexandre",
-            "email": "dalexandre@jolicode.com"
+            "name": "Motonori Iwata",
+            "email": "gootonori+github@gmail.com"
         }
     ],
     "autoload": {

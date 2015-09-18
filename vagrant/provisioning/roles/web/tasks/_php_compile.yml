@@ -1,7 +1,8 @@
 - name: Install required packages to compile php
   apt: name={{ item }} state=present update_cache=yes
   with_items:
-  - autoconf 
+  - autoconf
+  - make
   - automake
   - libtool
   - re2c

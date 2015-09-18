@@ -14,16 +14,13 @@ They are configured the same way:
 About versions
 --------------
 
-- **ruflin/elastica**: v0.90.5.0
-- **sherlock/sherlock**: dev-master
-- **elasticsearch/elasticsearch**: v0.4.2
-- **nervetattoo/elasticsearch**: v2.3.0
+- **ruflin/elastica**: 2.3.0
+- **sherlock/sherlock**: v0.1.16
+- **elasticsearch/elasticsearch**: v2.0.0
+- **nervetattoo/elasticsearch**: v2.4.1
 
 
-Data extracted 2013/11/25
--------------------------
-
-Runned on the VM (PHP 5.5.5, ES 0.90.6, Ubuntu precise64).
+Runned on the VM (PHP 5.6.13, ES 1.7.2, Ubuntu precise64).
 
 <table>
 <tr><th></th><th>elasticsearch       </th><th>sherlock            </th><th>elastica            </th><th>nervetattoo         </th></tr>
@@ -53,6 +50,8 @@ To run this benchmark you can use the provided Vagrantfile. It require:
 - 15 min to boot :D
 
 ```sh
+brew cask install vagrant
+brew install ansible
 git clone
 composer install
 vagrant up

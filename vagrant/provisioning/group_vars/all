@@ -1,9 +1,13 @@
-php_version: 5.5.5
+php_version: 5.6.13
 php_tarball: php-{{ php_version }}.tar.gz
-php_tarball_sha256sum: 483ff2370fa3a8863e6b023383c4bcfcc3ba462137c30c5fc75043e1755b7d17
+php_tarball_sha256sum: 92acc6c067f5e015a6881b4119eafec10eca11722e810f2c2083f72e17119bcf
 
-elasticsearch_version: 0.90.6
+elasticsearch_version: 1.7.2
 elasticsearch_tarball: elasticsearch-{{ elasticsearch_version }}.tar.gz
-elasticsearch_tarball_sha256sum: 2ff87847e993d52723b4e789db3cbba887f414b85bf04fd897032bc52fe0ad3a
+elasticsearch_tarball_sha256sum: 6f81935e270c403681e120ec4395c28b2ddc87e659ff7784608b86beb5223dd2
 elasticsearch_home: /opt/elasticsearch
 elasticsearch_heap_size: 124
+elasticsearch_timezone: Europe/Paris
+elasticsearch_apt_java_package: oracle-java7-installer
+elasticsearch_apt_repos:
+  - 'ppa:webupd8team/java'
